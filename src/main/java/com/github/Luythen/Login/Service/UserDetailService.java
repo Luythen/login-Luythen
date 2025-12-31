@@ -10,7 +10,7 @@ import com.github.Luythen.Login.Model.UserModelDto;
 import com.github.Luythen.Login.Repository.UserRepository;
 
 @Service
-public class UserService implements UserDetailsService {
+public class UserDetailService implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
