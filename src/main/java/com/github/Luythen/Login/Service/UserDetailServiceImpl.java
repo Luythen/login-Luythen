@@ -6,20 +6,17 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.github.Luythen.Login.Model.UserModelDto;
 import com.github.Luythen.Login.Repository.UserRepository;
 
 @Service
-public class UserDetailService implements UserDetailsService {
+public class UserDetailServiceImpl implements UserDetailsService {
 
     @Autowired
     private UserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        return userRepository.findByEmail(email)
-            .map(UserModelDto::new)
-            .orElseThrow(() -> new UsernameNotFoundException("Cant find"));
+        return userRepository.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("Cant find"));
     }
 
 

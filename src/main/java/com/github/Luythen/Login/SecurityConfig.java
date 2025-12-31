@@ -8,14 +8,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import com.github.Luythen.Login.Service.UserDetailService;
+import com.github.Luythen.Login.Service.UserDetailServiceImpl;
 
 @Configuration
 public class SecurityConfig {
 
-    private final UserDetailService userService;
+    private final UserDetailServiceImpl userService;
 
-    public SecurityConfig(UserDetailService userService) {
+    public SecurityConfig(UserDetailServiceImpl userService) {
         this.userService = userService;
     }
 
