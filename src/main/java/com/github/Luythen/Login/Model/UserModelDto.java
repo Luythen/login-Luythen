@@ -37,4 +37,8 @@ public class UserModelDto implements UserDetails {
         return user.getUserID();
     }
 
+    public String getRole () {
+        return user.getRole();
+    }
+
 }
