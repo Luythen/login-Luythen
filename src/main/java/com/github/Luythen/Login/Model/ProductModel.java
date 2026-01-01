@@ -24,6 +24,9 @@ public class ProductModel {
     @Column(nullable=false)
     private Float productCost;
 
+    @Column(nullable=false)
+    private String productImgPath;
+
     public String getProductID() {
         return productID;
     }
@@ -52,6 +55,14 @@ public class ProductModel {
         this.productCost = productCost;
     }
 
+    public String getProductImgPath() {
+        return productImgPath;
+    }
 
+    public void setProductImgPath(String productImgPath) {
+        this.productImgPath = productImgPath;
+    }
+
+    
 
 }

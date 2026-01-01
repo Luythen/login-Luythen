@@ -23,4 +23,8 @@ public class ProductService {
         return productRepository.findAll();
     }
 
+    public void createNewProduct (ProductModel pModel) {
+        productRepository.save(pModel);
+    }
+
 }

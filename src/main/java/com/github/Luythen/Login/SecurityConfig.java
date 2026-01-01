@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -11,7 +12,6 @@ import org.springframework.security.web.SecurityFilterChain;
 import com.github.Luythen.Login.Service.UserDetailServiceImpl;
 
 @Configuration
-@EnableWebSecurity
 public class SecurityConfig {
 
     private final UserDetailServiceImpl userService;
@@ -26,8 +26,9 @@ public class SecurityConfig {
             .requestMatchers("/auth/login").permitAll()
             .requestMatchers("/auth/register").permitAll()
             .requestMatchers("/logout").authenticated()
-            .requestMatchers("/product").permitAll()
+            .requestMatchers("/").permitAll()
             .requestMatchers("/product/{id}").permitAll()
+            .requestMatchers("/img/**").permitAll()
             .anyRequest().authenticated()
         )
         .userDetailsService(userService)
