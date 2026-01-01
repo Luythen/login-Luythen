@@ -15,7 +15,7 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
-    public ProductModel findProductByID (UUID productID) {
+    public ProductModel findProductByID (String productID) {
         return productRepository.findById(productID).get();
     }
 
