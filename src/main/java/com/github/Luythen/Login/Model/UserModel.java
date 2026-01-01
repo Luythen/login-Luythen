@@ -20,7 +20,7 @@ public class UserModel implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID userID;
+    private String userID;
 
     @Column(nullable = false)
     private String email;
@@ -37,7 +37,7 @@ public class UserModel implements UserDetails {
     @Column(nullable = false)
     private String role;
 
-    public UUID getUserID() {
+    public String getUserID() {
         return userID;
     }
 

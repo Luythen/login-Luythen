@@ -13,7 +13,7 @@ public class ProductModel {
 
     @Id
     @GeneratedValue(strategy=GenerationType.UUID)
-    private UUID productID;
+    private String productID;
 
     @Column(nullable=false)
     private String productTitle;
@@ -24,7 +24,7 @@ public class ProductModel {
     @Column(nullable=false)
     private Float productCost;
 
-    public UUID getProductID() {
+    public String getProductID() {
         return productID;
     }
 
