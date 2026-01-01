@@ -2,7 +2,6 @@ package com.github.Luythen.Login;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -26,12 +25,21 @@ public class SecurityConfig {
         return http.authorizeHttpRequests(auth -> auth
             .requestMatchers("/auth/login").permitAll()
             .requestMatchers("/auth/register").permitAll()
+            .requestMatchers("/logout").authenticated()
             .requestMatchers("/product").permitAll()
             .requestMatchers("/product/{id}").permitAll()
             .anyRequest().authenticated()
         )
         .userDetailsService(userService)
-        .formLogin(loginForm -> loginForm.defaultSuccessUrl("/", true))
+        .formLogin(loginForm -> {
+            loginForm.loginPage("/auth/login");
+            loginForm.defaultSuccessUrl("/", true);
+        })
+        .logout(logout -> {
+            logout.logoutSuccessUrl("/logout.done");
+            logout.deleteCookies("JSESSIONID");
+            logout.invalidateHttpSession(true);
+        })
         .build();
     }
 
