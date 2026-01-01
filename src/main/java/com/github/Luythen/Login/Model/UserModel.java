@@ -1,5 +1,6 @@
 package com.github.Luythen.Login.Model;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.UUID;
 
@@ -82,7 +83,7 @@ public class UserModel implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        throw new UnsupportedOperationException("Unimplemented method 'getAuthorities'");
+        return new ArrayList<>();
     }
 
     @Override
