@@ -37,9 +37,12 @@ public class SecurityConfig {
             loginForm.defaultSuccessUrl("/", true);
         })
         .logout(logout -> {
+            logout.logoutUrl("/logout");
             logout.logoutSuccessUrl("/logout.done");
             logout.deleteCookies("JSESSIONID");
             logout.invalidateHttpSession(true);
+            logout.clearAuthentication(true);
+            logout.permitAll();
         })
         .build();
     }
