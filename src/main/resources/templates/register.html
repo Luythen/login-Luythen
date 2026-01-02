@@ -9,17 +9,21 @@
     <body>
         <div th:insert="~{fragments/nav :: nav}"></div>
         <div class="container-sm d-flex justify-content-center mt-5">
-            <div class="card" style="width: 25rem;height: 25rem;">
+            <div class="card" style="width: 25rem;">
                 <div class="card-body">
                     <h3 class="card-title">Register new account</h3>
                     <form th:action="@{/auth/register}" th:object="${user}" method="post">
                         <label class="form-label" for="firstName">Firstname</label>
+                        <div class="alert alert-danger" th:each="error : ${#fields.errors('firstName')}" th:text="${error}"></div>
                         <input class="form-control" id="firstName" th:field="*{firstName}">
                         <label class="form-label" for="lastName">Lastname</label>
+                        <div class="alert alert-danger" th:each="error : ${#fields.errors('lastName')}" th:text="${error}"></div>
                         <input class="form-control" id="lastName" th:field="*{lastName}">
                         <label class="form-label" for="email">Email</label>
+                        <div class="alert alert-danger" th:each="error : ${#fields.errors('email')}" th:text="${error}"></div>
                         <input class="form-control" id="email" th:field="*{email}">
                         <label class="form-label" for="password">Password</label>
+                        <div class="alert alert-danger" th:each="error : ${#fields.errors('password')}" th:text="${error}"></div>
                         <input class="form-control" id="password" type="password" th:field="*{password}">
                         <button type="submit" class="btn btn-primary mt-2">Register</button>
                     </form>
