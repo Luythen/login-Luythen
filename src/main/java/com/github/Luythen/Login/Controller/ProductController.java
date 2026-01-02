@@ -3,6 +3,7 @@ package com.github.Luythen.Login.Controller;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,6 +34,7 @@ public class ProductController {
     }
 
     @GetMapping("/product/add")
+    @PreAuthorize("hasAuthority('AU_Admin')")
     public String addNewProduct (@RequestParam("title") String productTitle, @RequestParam("info") String productInfo, @RequestParam("cost") String productCost, @RequestParam("img") String productImgPath) {
         ProductModel newProduct = new ProductModel();
         newProduct.setProductTitle(productTitle);
