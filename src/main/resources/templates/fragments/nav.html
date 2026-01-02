@@ -1,3 +1,15 @@
-<header th:fragment="headerfragment">
-    <h1>MAXI</h1>
-</header>
+<nav class="navbar navbar-expand-lg bg-body-tertiary" th:fragment="nav">
+    <div class="container-fluid">
+        <a class="navbar-brand"><b>MAXI</b></a>
+        <div class="navbar-nav me-auto mb-2 mb-lg-0">
+            <a class="nav-link" href="/">Home</a>
+            <a sec:authorize="isAuthenticated()" class="nav-link" href="/cart">Cart</a>
+        </div>
+        <div class="navbar-nav navbar-right">
+            <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
+                <button class="btn btn-danger" type="submit">Logout</button>
+            </form>
+            <a sec:authorize="!isAuthenticated()" href="/auth/login" class="btn btn-primary">Login</a>
+        </div>
+    </div>
+</nav>

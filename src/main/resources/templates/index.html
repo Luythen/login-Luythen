@@ -4,11 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MAXI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
     <body>
-        <div th:insert="fragments/nav :: headerfragment"></div>
-        <form sec:authorize="isAuthenticated()" th:action="@{/logout}" method="post">
-            <button type="submit">Logout</button>
-        </form>
+        <div th:insert="~{fragments/nav :: nav}"></div>
+        <div class="container mt-4">
+            <div th:unless="${productList.isEmpty()}" class="row">
+                <div class="col-auto"  th:each="product : ${productList}">
+                    <div class="card" style="width: 15rem;height: 25rem !important;;">
+                        <img th:src="${product.productImgPath}" class="card-img-top" alt="">
+                        <div class="card-body">
+                            <h5 class="card-title"><a th:href="@{/product/{id}(id=${product.productID})}" th:text="${product.productTitle}"></a></h5>
+                            <h5 class="card-text" th:text="${product.productCost}"></h5>
+                            <button sec:authorize="isAuthenticated()" type="button" class="btn btn-primary mb-2">Add to cart</button>
+                        </div>        
+                    </div>
+                </div>
+            </div>
+            <div th:if="${productList.isEmpty()}">
+                <h1 class="text-center">NO PRODUCT FOUND</h1>
+            </div>
+        </div>
     </body>
 </html>
