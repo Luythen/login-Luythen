@@ -1,7 +1,6 @@
 package com.github.Luythen.Login.Repository;
 
 import java.util.Optional;
-import java.util.UUID;
 
 import org.springframework.data.repository.CrudRepository;
 
