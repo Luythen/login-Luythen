@@ -1,6 +1,7 @@
 package com.github.Luythen.Login.Model;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 public class RegisterDto {
 
@@ -14,6 +15,7 @@ public class RegisterDto {
     private String lastName;
 
     @NotBlank(message = "Cannot be empty")
+    @Size(min = 8, message = "Password must be at least 8 characters")
     private String password;
 
     public String getEmail() {
