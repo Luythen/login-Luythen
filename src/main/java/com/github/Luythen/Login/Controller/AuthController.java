@@ -3,7 +3,7 @@ package com.github.Luythen.Login.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.Errors;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -12,7 +12,7 @@ import com.github.Luythen.Login.Model.RegisterDto;
 import com.github.Luythen.Login.Service.AuthService;
 import com.github.Luythen.Login.Service.RegisterService;
 
-import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -40,14 +40,18 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public String regAndView(@ModelAttribute("user") RegisterDto user, HttpServletRequest request, Errors errors) {
+    public String postRegister(@ModelAttribute("user") @Valid RegisterDto user, BindingResult result) {
         if (authService.isAuthenticated()) {
             return "redirect:/";
         }
+        if (result.hasErrors()) {
+            return "register";
+        }
+
         try {
             registerService.registerNewUserAccount(user);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            result.rejectValue("email", "exits", e.getMessage());
             return "register";
         }
             
