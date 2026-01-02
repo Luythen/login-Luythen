@@ -37,10 +37,12 @@ public class SecurityConfig {
         )
         .userDetailsService(userService)
         .formLogin(loginForm -> {
+            //source: https://www.baeldung.com/spring-security-login
             loginForm.loginPage("/auth/login");
             loginForm.defaultSuccessUrl("/", true);
         })
         .logout(logout -> {
+            //source: https://www.baeldung.com/spring-security-logout
             logout.logoutUrl("/logout");
             logout.logoutSuccessUrl("/logout.done");
             logout.deleteCookies("JSESSIONID");
