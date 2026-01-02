@@ -2,6 +2,7 @@ package com.github.Luythen.Login;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
@@ -12,6 +13,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import com.github.Luythen.Login.Service.UserDetailServiceImpl;
 
 @Configuration
+@EnableWebSecurity
+@EnableMethodSecurity
 public class SecurityConfig {
 
     private final UserDetailServiceImpl userService;
@@ -28,7 +31,7 @@ public class SecurityConfig {
             .requestMatchers("/logout").authenticated()
             .requestMatchers("/").permitAll()
             .requestMatchers("/product/{id}").permitAll()
-            .requestMatchers("/product/add").hasRole("Admin")
+            .requestMatchers("/product/add").hasAuthority("AU_Admin")
             .requestMatchers("/Img/**").permitAll()
             .anyRequest().authenticated()
         )
