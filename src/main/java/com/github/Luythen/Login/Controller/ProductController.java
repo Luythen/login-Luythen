@@ -41,5 +41,9 @@ public class ProductController {
         return "redirect:/";
     }
     
+    @GetMapping("/cart")
+    public String cart() {
+        return "redirect:/";
+    }
 
 }

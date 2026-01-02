@@ -31,6 +31,7 @@ public class SecurityConfig {
             .requestMatchers("/").permitAll()
             .requestMatchers("/product/{id}").permitAll()
             .requestMatchers("/product/add").hasAuthority("AU_Admin")
+            .requestMatchers("/cart").authenticated()
             .requestMatchers("/Img/**").permitAll()
             .anyRequest().authenticated()
         )
