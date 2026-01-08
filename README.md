@@ -37,7 +37,7 @@ ErrorController:
 - ProductModel
 
 ## Säkerhet
-SecuriyConfig hanterar vad man har tillgång till som t.ex. en oinloggad använder har ej tillgång till `/cart` eller `/logout` genom att kollar if användaren är `authenticated()` och så använder applikation sig av ```sec:authorize="isAuthenticated()"``` för vissa knappar bara för det som är inloggad
+SecuriyConfig hanterar vad man har tillgång till som t.ex. en oinloggad använder har ej tillgång till `/cart` eller `/logout` genom att kollar if användaren är `authenticated()` och så använder applikation sig av ```sec:authorize="isAuthenticated()"``` för vissa knappar bara för det som är inloggad och applikation använder sig också av `@PreAuthorize("hasAuthority('AU_Admin')")` på route `/product/add`
 
 ## Användning
 Man kommer behöva
