@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class ErrorController {
 
     @GetMapping("/error")
-    public String errorPage(@RequestParam String param) {
+    public String errorPage() {
         return "error";
     }
     
